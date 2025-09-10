@@ -16,19 +16,6 @@ o.cursorline = true
 o.scrolloff = 10
 o.confirm = true
 
-vim.lsp.config('lua_ls', {
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = { 'vim', 'require' },
-      },
-    },
-  },
-})
-
 vim.api.nvim_create_autocmd('UIEnter', {
   callback = function()
     vim.o.clipboard = 'unnamedplus'
@@ -71,7 +58,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local TREESITTER_PATH = "C:\\Users\\manderson6\\AppData\\Local\\nvim-data\\treesitter"
+local TREESITTER_PATH = "C:\\Users\\mmand\\AppData\\Local\\nvim-data\\treesitter"
 --PLUGINS
 require("lazy").setup({
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
@@ -79,7 +66,21 @@ require("lazy").setup({
       vim.opt.runtimepath:append(TREESITTER_PATH)
       require("nvim-treesitter.configs").setup(opts)
     end,
-    opts = { parser_install_dir = TREESITTER_PATH },
+    opts = { 
+      enusre_installed = { "lua" },
+      parser_install_dir = TREESITTER_PATH, 
+      highlight = { enable = true, }, 
+      indent = { enable = true, },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "gnn", -- set to `false` to disable one of the mappings
+          node_incremental = "grn",
+          scope_incremental = "grc",
+          node_decremental = "grm",
+        },
+      },
+    },
   },
   { "neovim/nvim-lspconfig", lazy = false },
   {
@@ -118,8 +119,18 @@ require("lazy").setup({
       }
     }
   },
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+  },
 })
 
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
 vim.lsp.enable({
-  "lua_lsp"
+  "lua_ls"
 })
