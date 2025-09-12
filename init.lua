@@ -22,17 +22,6 @@ vim.api.nvim_create_autocmd('UIEnter', {
   end,
 })
 
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
--- Map <A-j>, <A-k>, <A-h>, <A-l> to navigate between windows in any modes
-vim.keymap.set({ 't', 'i' }, '<A-h>', '<C-\\><C-n><C-w>h')
-vim.keymap.set({ 't', 'i' }, '<A-j>', '<C-\\><C-n><C-w>j')
-vim.keymap.set({ 't', 'i' }, '<A-k>', '<C-\\><C-n><C-w>k')
-vim.keymap.set({ 't', 'i' }, '<A-l>', '<C-\\><C-n><C-w>l')
-vim.keymap.set({ 'n' }, '<A-h>', '<C-w>h')
-vim.keymap.set({ 'n' }, '<A-j>', '<C-w>j')
-vim.keymap.set({ 'n' }, '<A-k>', '<C-w>k')
-vim.keymap.set({ 'n' }, '<A-l>', '<C-w>l')
-
 -- Try it with `yap` in normal mode. See `:h vim.hl.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -58,7 +47,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local TREESITTER_PATH = "C:\\Users\\mmand\\AppData\\Local\\nvim-data\\treesitter"
+local local_appdata = os.getenv("LOCALAPPDATA")
+local TREESITTER_PATH = local_appdata .. "\\nvim-data\\treesitter"
 --PLUGINS
 require("lazy").setup({
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
@@ -123,7 +113,19 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
       dependencies = { 'nvim-lua/plenary.nvim' }
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    lazy = false,
+  }
 })
+
+vim.keymap.set('n', '<leader>e', '<Cmd>Neotree<CR>', { desc = 'open neotree' })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
