@@ -51,7 +51,7 @@ local local_appdata = os.getenv("LOCALAPPDATA")
 local TREESITTER_PATH = local_appdata .. "\\nvim-data\\treesitter"
 --PLUGINS
 require("lazy").setup({
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
     config = function(_, opts)
       vim.opt.runtimepath:append(TREESITTER_PATH)
       require("nvim-treesitter.configs").setup(opts)
@@ -111,7 +111,7 @@ require("lazy").setup({
   },
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
-      dependencies = { 'nvim-lua/plenary.nvim' }
+    dependencies = { 'nvim-lua/plenary.nvim' }
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -122,6 +122,15 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
     },
     lazy = false,
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function ()
+      require('lualine').setup({
+        options = { theme = 'dracula' }
+      })
+    end
   }
 })
 
