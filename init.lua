@@ -40,15 +40,16 @@ end, { desc = 'Print the git blame for the current line' })
 vim.cmd('packadd! nohlsearch')
 
 -- lazy vim plugin manager
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local nvimDataPath = vim.fn.stdpath("data")
+local lazypath = nvimDataPath .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	vim.fn.system({ "git", "clone", "--filter=blob:none",
 	"https://github.com/folke/lazy.nvim.git", lazypath, "--branch=stable"})
 end
 vim.opt.rtp:prepend(lazypath)
 
-local local_appdata = os.getenv("LOCALAPPDATA")
-local TREESITTER_PATH = local_appdata .. "\\nvim-data\\treesitter"
+local TREESITTER_PATH = nvimDataPath .. "\\nvim-data\\treesitter"
+
 --PLUGINS
 require("lazy").setup({
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
@@ -56,10 +57,10 @@ require("lazy").setup({
       vim.opt.runtimepath:append(TREESITTER_PATH)
       require("nvim-treesitter.configs").setup(opts)
     end,
-    opts = { 
+    opts = {
       enusre_installed = { "lua" },
-      parser_install_dir = TREESITTER_PATH, 
-      highlight = { enable = true, }, 
+      parser_install_dir = TREESITTER_PATH,
+      highlight = { enable = true, },
       indent = { enable = true, },
       incremental_selection = {
         enable = true,
@@ -134,7 +135,7 @@ require("lazy").setup({
   }
 })
 
-vim.keymap.set('n', '<leader>e', '<Cmd>Neotree<CR>', { desc = 'open neotree' })
+vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>', { desc = 'open neotree' })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
