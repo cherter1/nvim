@@ -1,14 +1,15 @@
-local TREESITTER_PATH = vim.fn.stdpath('data') .. '\\treesitter'
+local TREESITTER_PATH = vim.fn.stdpath('data') .. '/treesitter'
 
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   config = function(_, opts)
-    vim.opt.runtimepath:append(TREESITTER_PATH)
+    vim.opt.runtimepath:prepend(TREESITTER_PATH)
     require('nvim-treesitter.configs').setup(opts)
   end,
   opts = {
     enusre_installed = { 'lua' },
+    auto_install = false,
     parser_install_dir = TREESITTER_PATH,
     highlight = { enable = true, },
     indent = { enable = true, },

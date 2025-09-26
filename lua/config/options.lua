@@ -11,8 +11,9 @@ o.cmdheight = 1
 
 -- tabs --
 o.expandtab = true
-o.shiftwidth = 2
-o.tabstop = 2
+o.shiftwidth = 4
+o.tabstop = 4
+o.softtabstop = 4
 o.smartindent = true
 o.autoindent = true
 o.grepprg = 'rg --vimgrep'
