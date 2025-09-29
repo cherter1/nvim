@@ -16,7 +16,6 @@ function M.LoadAscii()
 	end
 	local random = math.random(#collected)
 	local picked = collected[random]
-	vim.print(random)
 	if not picked then
 		return vim.print("failed to pick file (no file picked)")
 	end
