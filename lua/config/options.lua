@@ -6,8 +6,17 @@ o.relativenumber = true
 o.cursorline = true
 o.scrolloff = 10
 o.confirm = true
-o.wrap = false
+o.wrap = true
 o.cmdheight = 1
+o.list = true
+o.listchars = {
+    trail = '·',
+    extends = '󰇘',
+    precedes = '󰇘',
+    nbsp = '␣',
+    lead = '·',
+    multispace = '·'
+}
 
 -- tabs --
 o.expandtab = true
