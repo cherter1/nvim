@@ -14,3 +14,6 @@ vim.keymap.set('n', '<leader>bp', '<Cmd>bprevious<CR>', { desc = 'previous buffe
 
 vim.keymap.set('v', '<', '<gv', { desc = 'indent left and reselect' })
 vim.keymap.set('v', '>', '>gv', { desc = 'indent right and reselect' })
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
