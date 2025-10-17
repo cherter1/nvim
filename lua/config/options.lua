@@ -1,15 +1,13 @@
-local o = vim.opt
-
 -- base --
-o.number = true
-o.relativenumber = true
-o.cursorline = true
-o.scrolloff = 10
-o.confirm = true
-o.wrap = true
-o.cmdheight = 1
-o.list = true
-o.listchars = {
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.scrolloff = 10
+vim.opt.confirm = true
+vim.opt.wrap = true
+vim.opt.cmdheight = 1
+vim.opt.list = true
+vim.opt.listchars = {
     trail = '·',
     extends = '󰇘',
     precedes = '󰇘',
@@ -19,24 +17,24 @@ o.listchars = {
 }
 
 -- tabs --
-o.expandtab = true
-o.shiftwidth = 4
-o.tabstop = 4
-o.softtabstop = 4
-o.smartindent = true
-o.autoindent = true
-o.grepprg = 'rg --vimgrep'
-o.grepformat = '%f:%l:%c:%m'
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.grepprg = 'rg --vimgrep'
+vim.opt.grepformat = '%f:%l:%c:%m'
 
 -- search --
-o.ignorecase = true
-o.smartcase = true
-o.hlsearch = true
-o.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
 
 -- visual --
-o.termguicolors = true
-o.signcolumn = 'yes'
-o.colorcolumn = '120'
-o.showmatch = true
-o.matchtime = 2
+vim.opt.termguicolors = true
+vim.opt.signcolumn = 'yes'
+vim.opt.colorcolumn = '120'
+vim.opt.showmatch = true
+vim.opt.matchtime = 2

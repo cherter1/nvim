@@ -8,7 +8,14 @@ return {
     require('nvim-treesitter.configs').setup(opts)
   end,
   opts = {
-    enusre_installed = { 'lua' },
+    enusre_installed = {
+      'lua',
+      'c_sharp',
+      'vim',
+      'vimdoc',
+      'html',
+      'css',
+    },
     auto_install = false,
     parser_install_dir = TREESITTER_PATH,
     highlight = { enable = true, },

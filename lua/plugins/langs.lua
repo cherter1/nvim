@@ -18,4 +18,16 @@ return {
     },
     opts_extend = { "sources.default" },
   },
+  {
+    "numToStr/Comment.nvim",
+    lazy = false,
+    opts = {
+      toggler = {
+        -- line comment
+        line = "gcc",
+        -- block comment
+        block = "gbc",
+      },
+    },
+  },
 }
