@@ -27,8 +27,18 @@ vim.api.nvim_create_user_command('GitBlameLine', function()
   print(vim.fn.system({ 'git', 'blame', '-L', line_number .. ',+1', filename }))
 end, { desc = 'Print the git blame for the current line' })
 
+local mattGuyGroup = vim.api.nvim_create_augroup('mattGuyGroup', {})
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = mattGuyGroup,
+    callback = function(e)
+        local opts = {buffer = e.buf }
+        vim.keymap.set('n', '<leader>gd', function() vim.lsp.buf.define() end, opts)
+    end
+})
+
 vim.cmd('packadd! nohlsearch')
 
 vim.lsp.enable({
-  "lua_ls"
+  "lua_ls",
+  "roslyn"
 })

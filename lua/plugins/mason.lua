@@ -1,6 +1,10 @@
 return {
     'mason-org/mason.nvim',
     opts = {
+        registries = {
+            "github:mason-org/mason-registry",
+            "github:Crashdummyy/mason-registry",
+        },
         ensure_installed = {
             "csharpier",
             "eslint_d",
@@ -8,6 +12,7 @@ return {
             "prettierd",
             "stylua",
             "vue-language-server",
+            "roslyn",
         },
         ui = {
             icons = {
