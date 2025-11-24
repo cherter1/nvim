@@ -33,7 +33,6 @@ return {
     -- CSHARP LANG SERVER --
     {
         "seblyng/roslyn.nvim",
-        dependencies = { 'tris203/rzls.nvim' },
         config = function(_, opts)
             require('roslyn').setup(opts)
 
@@ -41,7 +40,6 @@ return {
                 on_attach = function()
                     print('testing')
                 end,
-                handlers = require('rzls.roslyn_handlers'),
                 settings = {
                     ['csharp|inlay_hints'] = {
                         csharp_enable_inlay_hints_for_implicit_variable_types = true,
