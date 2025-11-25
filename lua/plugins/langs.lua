@@ -79,6 +79,22 @@ return {
                     }
                 },
             })
+            vim.diagnostic.config({
+                float = {
+                    source = 'if_many',
+                },
+                virtual_text = { source = 'if_many' },
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = 'E',
+                        [vim.diagnostic.severity.WARN] = 'W',
+                        [vim.diagnostic.severity.INFO] = 'I',
+                        [vim.diagnostic.severity.HINT] = 'H',
+                    },
+                linehl = { [vim.diagnostic.severity.INFO] = 'DiagnosticInfoMsg' },
+                numhl = { [vim.diagnostic.severity.WARN] = 'WarningMsg' },
+                },
+            })
         end,
         opts = {
             filewatching = 'roslyn',

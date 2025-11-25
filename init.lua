@@ -32,10 +32,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(e)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = e.buf, desc = 'Go to definition' })
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = e.buf, desc = 'Go to implementation' })
-        vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, { buffer = e.buf, desc = 'Get references' })
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = e.buf, desc = 'Get references' })
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = e.buf, desc = 'hover diagnostic info' })
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = e.buf, desc = 'rename symbol' })
-        vim.keymap.set('n', '<leader>ga', vim.lsp.buf.code_action, { buffer = e.buf, desc = 'open code actions window' })
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = e.buf, desc = 'open code actions window' })
     end,
 })
 
