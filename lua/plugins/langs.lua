@@ -79,17 +79,28 @@ return {
                     }
                 },
             })
+            local signs = {
+                ERROR = ' ',
+                WARN = ' ',
+                INFO = ' ',
+                HINT = '󰌵 ',
+            }
             vim.diagnostic.config({
                 float = {
                     source = 'if_many',
                 },
-                virtual_text = { source = 'if_many' },
+                virtual_text = {
+                    source = 'if_many',
+                    prefix = function(diagnostic)
+                        return signs[vim.diagnostic.severity[diagnostic.severity]]
+                    end,
+                },
                 signs = {
                     text = {
-                        [vim.diagnostic.severity.ERROR] = 'E',
-                        [vim.diagnostic.severity.WARN] = 'W',
-                        [vim.diagnostic.severity.INFO] = 'I',
-                        [vim.diagnostic.severity.HINT] = 'H',
+                        [vim.diagnostic.severity.ERROR] = signs['ERROR'],
+                        [vim.diagnostic.severity.WARN] = signs['WARN'],
+                        [vim.diagnostic.severity.INFO] = signs['INFO'],
+                        [vim.diagnostic.severity.HINT] = signs['HINT'],
                     },
                 linehl = { [vim.diagnostic.severity.INFO] = 'DiagnosticInfoMsg' },
                 numhl = { [vim.diagnostic.severity.WARN] = 'WarningMsg' },
