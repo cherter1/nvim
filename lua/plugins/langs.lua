@@ -88,6 +88,16 @@ return {
             vim.diagnostic.config({
                 float = {
                     source = 'if_many',
+                    border = {
+                        { "╭", 'FloatBorder' },
+                        { "─", 'FloatBorder' },
+                        { "╮", 'FloatBorder' },
+                        { "│", 'FloatBorder' },
+                        { "╯", 'FloatBorder' },
+                        { "─", 'FloatBorder' },
+                        { "╰", 'FloatBorder' },
+                        { "│", 'FloatBorder' },
+                    },
                 },
                 virtual_text = {
                     source = 'if_many',
