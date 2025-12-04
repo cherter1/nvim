@@ -92,7 +92,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.api.nvim_set_hl(0, "@lsp.type.struct.cs", { link = "TypeStruct" })
         vim.api.nvim_set_hl(0, "@lsp.type.enum.cs", { link = "TypeStruct" })
         vim.api.nvim_set_hl(0, "@lsp.type.interface.cs", { link = "TypeStruct" })
-        vim.api.nvim_set_hl(0, "TypeStruct", { fg = lighten('#eed49f', 50), bold = true })
+        vim.api.nvim_set_hl(0, "TypeStruct", { fg = lighten('#eed49f', 50) })
 
     end,
 })
