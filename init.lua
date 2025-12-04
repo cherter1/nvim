@@ -27,6 +27,58 @@ vim.api.nvim_create_user_command('GitBlameLine', function()
   print(vim.fn.system({ 'git', 'blame', '-L', line_number .. ',+1', filename }))
 end, { desc = 'Print the git blame for the current line' })
 
+vim.lsp.config('roslyn', {
+    settings = {
+        ['csharp|inlay_hints'] = {
+            csharp_enable_inlay_hints_for_implicit_variable_types = true,
+            csharp_enable_inlay_hints_for_implicit_object_creation = true,
+            csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+            dotnet_enable_inlay_hints_for_parameters = true,
+            dotnet_enable_inlay_hints_for_literal_parameters = true,
+            dotnet_enable_inlay_hints_for_indexer_parameters = true,
+            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+            dotnet_enable_inlay_hints_for_other_parameters = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+            dotnet_enable_inlay_hints_for_types = true,
+        },
+        ['csharp|background_analysis'] = {
+            dotnet_analyzer_diagnostics_scope = 'fullSolution',
+            dotnet_compiler_diagnostics_scope = 'fullSolution',
+        },
+        ['csharp|completion'] = {
+            dotnet_show_name_completion_suggestions = true,
+            dotnet_provide_regex_completions = true,
+            dotnet_show_completion_items_from_unimported_namespaces = true,
+        },
+        ['csharp|symbol_search'] = {
+            dotnet_search_reference_assemblies = true,
+        },
+        ['csharp|formatting'] = {
+            dotnet_organize_imports_on_format = true,
+        },
+        ['csharp|code_lens'] = {
+            dotnet_enable_references_code_lens = true,
+            dotnet_enable_tests_code_lens = true,
+        },
+        ['navigation'] = {
+            dotnet_navigate_to_decompiled_sources = true,
+        }
+    },
+})
+
+local function lighten(hex, percent)
+    local r = tonumber(hex:sub(2,3),16)
+    local g = tonumber(hex:sub(4,5),16)
+    local b = tonumber(hex:sub(6,7),16)
+    r = math.floor(r + (255 - r) * (0.01 * percent))
+    g = math.floor(g + (255 - g) * (0.01 * percent))
+    b = math.floor(b + (255 - b) * (0.01 * percent))
+    return string.format('#%02x%02x%02x', r, g, b)
+end
+
+
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('mattGuyGroup', {}),
     callback = function(e)
@@ -38,14 +90,46 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = e.buf, desc = 'open code actions window' })
 
         vim.api.nvim_set_hl(0, "@lsp.type.struct.cs", { link = "TypeStruct" })
+        vim.api.nvim_set_hl(0, "@lsp.type.enum.cs", { link = "TypeStruct" })
+        vim.api.nvim_set_hl(0, "@lsp.type.interface.cs", { link = "TypeStruct" })
+        vim.api.nvim_set_hl(0, "TypeStruct", { fg = lighten('#eed49f', 50), bold = true })
 
-        vim.api.nvim_set_hl(0, "TypeStruct", { fg = "#f4e0b6", bold = true })
     end,
+})
+
+local signs = {
+    ERROR = ' ',
+    WARN = ' ',
+    INFO = ' ',
+    HINT = '󰌵 ',
+}
+
+vim.diagnostic.config({
+    float = {
+        source = 'if_many',
+        severity_sort = true,
+    },
+    virtual_text = {
+        source = 'if_many',
+        prefix = function(diagnostic)
+            return signs[vim.diagnostic.severity[diagnostic.severity]]
+        end,
+    },
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = signs['ERROR'],
+            [vim.diagnostic.severity.WARN] = signs['WARN'],
+            [vim.diagnostic.severity.INFO] = signs['INFO'],
+            [vim.diagnostic.severity.HINT] = signs['HINT'],
+        },
+        linehl = { [vim.diagnostic.severity.INFO] = 'DiagnosticInfoMsg' },
+        numhl = { [vim.diagnostic.severity.WARN] = 'WarningMsg' },
+    },
 })
 
 vim.cmd('packadd! nohlsearch')
 
 vim.lsp.enable({
-  "lua_ls",
-  "roslyn"
+    "lua_ls",
+    "roslyn"
 })
