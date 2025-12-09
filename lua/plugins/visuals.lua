@@ -7,7 +7,7 @@ return {
         init = function()
             vim.cmd.colorscheme 'catppuccin'
         end,
-        opts = { auto_integrations = true, flavor = 'macchiato' },
+        opts = { auto_integrations = true, flavour = 'macchiato' },
     },
     {
         'nvim-lualine/lualine.nvim',
