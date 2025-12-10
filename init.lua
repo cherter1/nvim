@@ -78,7 +78,6 @@ local function lighten(hex, percent)
     return string.format('#%02x%02x%02x', r, g, b)
 end
 
-
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('mattGuyGroup', {}),
     callback = function(e)
@@ -133,7 +132,6 @@ local npairs = require("nvim-autopairs")
 local Rule   = require("nvim-autopairs.rule")
 local cond   = require("nvim-autopairs.conds")
 
--- Auto newline between braces (Rider-style)
 npairs.add_rules({
     Rule("{", "}", "cs")
         :with_pair(cond.not_inside_quote())
