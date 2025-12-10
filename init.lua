@@ -92,7 +92,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.api.nvim_set_hl(0, "@lsp.type.struct.cs", { link = "TypeStruct" })
         vim.api.nvim_set_hl(0, "@lsp.type.enum.cs", { link = "TypeStruct" })
         vim.api.nvim_set_hl(0, "@lsp.type.interface.cs", { link = "TypeStruct" })
-        vim.api.nvim_set_hl(0, "TypeStruct", { fg = lighten('#eed49f', 50) })
+        vim.api.nvim_set_hl(0, "TypeStruct", { fg = lighten('#eed49f', 60) })
 
     end,
 })
@@ -128,6 +128,20 @@ vim.diagnostic.config({
 })
 
 vim.cmd('packadd! nohlsearch')
+
+local npairs = require("nvim-autopairs")
+local Rule   = require("nvim-autopairs.rule")
+local cond   = require("nvim-autopairs.conds")
+
+-- Auto newline between braces (Rider-style)
+npairs.add_rules({
+    Rule("{", "}", "cs")
+        :with_pair(cond.not_inside_quote())
+        :with_move(cond.none())
+        :replace_map_cr(function()
+            return "<BS><CR>{<C-g>u<CR><C-c>O"
+        end)
+})
 
 vim.lsp.enable({
     "lua_ls",

@@ -30,6 +30,11 @@ return {
             },
         },
     },
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = true
+    },
     -- CSHARP LANG SERVER --
     {
         "seblyng/roslyn.nvim",
