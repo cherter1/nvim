@@ -31,6 +31,26 @@ return {
         },
     },
     {
+        'stevearc/conform.nvim',
+        opts = {
+            async = true,
+            formatters_by_ft = {
+                cs = { "csharp_conf" },
+                csproj = { "csharp_conf" }
+            },
+            formatters = {
+                csharp_conf = {
+                    command = "csharpier",
+                    args = {
+                        "format",
+                        "--write-stdout",
+                    },
+                    to_stdin = true,
+                },
+            },
+        }
+    },
+    {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         config = true

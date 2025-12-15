@@ -88,6 +88,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = e.buf, desc = 'hover diagnostic info' })
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = e.buf, desc = 'rename symbol' })
         vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = e.buf, desc = 'open code actions window' })
+        vim.keymap.set({ 'n', 'x' }, '<leader>fm', function() require("conform").format { lsp_fallback = true } end, { buffer = e.buf, desc = 'format' })
 
         vim.api.nvim_set_hl(0, "@lsp.type.struct.cs", { link = "TypeStruct" })
         vim.api.nvim_set_hl(0, "@lsp.type.enum.cs", { link = "TypeStruct" })
