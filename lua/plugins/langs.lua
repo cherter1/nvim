@@ -43,9 +43,7 @@ return {
                     command = "csharpier",
                     args = {
                         "format",
-                        "--write-stdout",
                     },
-                    to_stdin = true,
                 },
             },
         }
