@@ -23,9 +23,7 @@ return {
         lazy = false,
         opts = {
             toggler = {
-                -- line comment
                 line = "gcc",
-                -- block comment
                 block = "gbc",
             },
         },

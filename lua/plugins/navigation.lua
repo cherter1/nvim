@@ -13,6 +13,14 @@ return {
             'nvim-tree/nvim-web-devicons',
         },
         lazy = false,
+        opts = {
+            filesystem = {
+                filtered_items = {
+                    hide_dotfiles = false,
+                    visible = true,
+                },
+            },
+        },
     },
     {
         'ThePrimeagen/harpoon',
