@@ -2,7 +2,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 20
 vim.opt.confirm = true
 vim.opt.wrap = true
 vim.opt.cmdheight = 1
@@ -35,6 +35,12 @@ vim.opt.incsearch = true
 -- visual --
 vim.opt.termguicolors = true
 vim.opt.signcolumn = 'yes'
-vim.opt.colorcolumn = '120'
+vim.opt.colorcolumn = '140'
 vim.opt.showmatch = true
 vim.opt.matchtime = 2
+
+-- fold --
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
