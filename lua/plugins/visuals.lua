@@ -21,9 +21,23 @@ return {
         event = 'VimEnter',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = {
-            theme = 'hyper',
+            theme = 'doom',
             config = {
-                header = require('asciiart').LoadAscii()
+                header = require('asciiart').LoadAscii(),
+                center = {
+                    {
+                        icon = '',
+                        icon_hl = 'group',
+                        desc = 'description',
+                        desc_hl = 'group',
+                        key = 'shortcut key',
+                        key_hl = 'group',
+                        key_format = ' [%s]',
+                        action = '',
+                    },
+                },
+                footer = {},
+                vertical_center = false,
             }
         }
     },
