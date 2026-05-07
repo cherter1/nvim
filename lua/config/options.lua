@@ -13,7 +13,8 @@ vim.opt.listchars = {
     precedes = '󰇘',
     nbsp = '␣',
     lead = '·',
-    multispace = '·'
+    multispace = '·',
+    tab = '·→'
 }
 
 -- tabs --

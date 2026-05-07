@@ -44,8 +44,8 @@ vim.lsp.config('roslyn', {
             dotnet_enable_inlay_hints_for_types = true,
         },
         ['csharp|background_analysis'] = {
-            dotnet_analyzer_diagnostics_scope = 'fullSolution',
-            dotnet_compiler_diagnostics_scope = 'fullSolution',
+            dotnet_analyzer_diagnostics_scope = 'default',
+            dotnet_compiler_diagnostics_scope = 'default',
         },
         ['csharp|completion'] = {
             dotnet_show_name_completion_suggestions = true,
@@ -57,10 +57,6 @@ vim.lsp.config('roslyn', {
         },
         ['csharp|formatting'] = {
             dotnet_organize_imports_on_format = true,
-        },
-        ['csharp|code_lens'] = {
-            dotnet_enable_references_code_lens = true,
-            dotnet_enable_tests_code_lens = true,
         },
         ['navigation'] = {
             dotnet_navigate_to_decompiled_sources = true,

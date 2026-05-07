@@ -1,8 +1,4 @@
 return {
-    {
-        "cseickel/diagnostic-window.nvim",
-        dependencies = { "MunifTanjim/nui.nvim" }
-    },
     { "neovim/nvim-lspconfig", lazy = false },
     {
         "saghen/blink.cmp",
@@ -54,6 +50,5 @@ return {
     -- CSHARP LANG SERVER --
     {
         "seblyng/roslyn.nvim",
-        opts = { filewatching = 'off' }
     }
 }
